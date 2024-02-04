@@ -12,10 +12,15 @@ def market_returns(stock_market_returns, years, initial_deposit, monthly_deposit
 
     monthly_rate = stock_market_returns / 12
     total_months = years * 12
+    # annual_total = 0
 
     future_value = initial_deposit * math.pow(1 + monthly_rate, total_months)
     for month in range(1, total_months + 1):
         future_value += monthly_deposits * math.pow(1 + monthly_rate, total_months - month)
+        # if month % 12 == 0:
+        #     annual_total += 1
+        #     print(f"Year {annual_total} = {future_value}")
+
 
     return future_value
 
@@ -51,7 +56,6 @@ def savings_returns(savings_interest, years, initial_deposit, monthly_deposits )
 def savings_returns_increase(savings_interest, years, initial_deposit, monthly_deposit, increase):
     """`Calculates the users return if they increased their deposit amount by a percentage each year"""
 
-    
     monthly_rate = savings_interest / 12
     total_months = years * 12
 
@@ -126,21 +130,20 @@ def investment_calculator():
 
     print(f"If you invested your money into the market, you would have accumilated £{market_interest_accrued_rounded} on top of your total deposits of £{total_deposits} \n")
 
-    print(f"If you put your money into a savings account, you would have only accumilated £{savings_interest_accrued_rounded} on top of your total deposits of {total_deposits}\n")
+    print(f"If you put your money into a savings account, you would have only accumilated £{savings_interest_accrued_rounded} on top of your total deposits of £{total_deposits}\n")
 
     # Allows user to increase monthly deposits every year by a percentage
 
-    
-    increase_percentage = input("Do you want to see what happens if you increase your monthly deposit every year? (yes/no): ")
+    increase_percentage = input("Do you want to see what happens if you increase your monthly deposit every year? (yes/no): \n")
     while True:
         if increase_percentage.lower() == "yes":
             try:
-                increase = float(input("Enter the percentage you want to increase it by as a decimal (1% = 0.01): "))
+                increase = float(input("Enter the percentage you want to increase it by as a decimal (1% = 0.01): \n"))
                 market_return_value_increase = market_returns_increase(stock_market_returns, years, initial_deposit, monthly_deposit, increase)
                 market_return_value_increase_round = round(market_return_value_increase)
                 print(f"You would have £{market_return_value_increase_round} at the end of the 30 years\n")
                 additional_return = market_return_value_increase_round - market_interest_accrued_rounded
-                print(f" That's an extra £{additional_return}!")
+                print(f"That's an extra £{additional_return} from only a 1% increase per year!")
                 break
             except ValueError:
                 print("That's  not a number, please try again")
@@ -151,77 +154,6 @@ def investment_calculator():
             print("Incorrect input, please try again")
 
 
-    print()
-
-
 investment_calculator()
 
-    # Asks user for choice and shows calculation
-   
-#     print("Do you want simple, or compound interest? ")
-#     interest = input("Enter your choice: ").lower()
-   
-#     if interest == "simple" :
-#         print(simple_interest)
-   
-#     elif interest == "compound" : 
-#         print(compound_interest)
-    
-#     else:
-#         print("Error, invalid input")
-
-# # Bond calculator
-
-# def bond_calculator(): 
-#     current_home_value = float(input("Enter the current value of your home: "))
-#     interest_rate_2 = float(input("Enter your interest rate: "))
-#     bond_repayment = int(input("How many months will you repay the bond in?: "))
-
-
-#     monthy_interest_rate = interest_rate_2 / 12 / 100
-
-#     total_repayment = (monthy_interest_rate * current_home_value) / ( 1 - ( 1 + monthy_interest_rate ) ** ( - bond_repayment))
-
-#     print(total_repayment)
-
-#     # p = present value of house
-#     # i = monthly interest rate
-#     # n = number of months
-
-#     # repayment = (i * p) / (1 - (1 + i) * * ( - n))
-
-# # Menu funcion that displays instrucions.
-
-# def display_menu():     
-#     print("Menu:")     
-#     print()
-#     print("investment - to calculate the amount of interest you'll earn on your investment")     
-#     print()
-#     print("bond       - to calculate the amount you'll have to pay on a home loan")
-#     print()
-#     print("Enter either 'investment' or 'bond' from the menu above to proceed:")
-#     print()
-
-    
-# # Displays menu and allows user input
-
-# display_menu()
-# choice = input("Enter your choice: ").lower()
-
-# # Handles user input
-
-# if choice == "investment":
-#     investment_calculator()
-
-# elif choice == "bond": 
-#     bond_calculator()
-
-# else: 
-#     print("Error, invalid input")
-
-
-
-
-
-
-
+ 
